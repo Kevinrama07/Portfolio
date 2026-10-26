@@ -12,56 +12,10 @@ export default function Contact({ reducedMotion }) {
   const headingRef = useRef(null)
   const formRef = useRef(null)
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState({ type: '', message: '' })
-  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setStatus({ type: '', message: '' })
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!formData.name.trim() || !formData.email.trim() || !formData.subject.trim() || !formData.message.trim()) {
-      setStatus({ type: 'error', message: 'Veuillez remplir tous les champs.' })
-      return
-    }
-    if (!emailRegex.test(formData.email.trim())) {
-      setStatus({ type: 'error', message: 'Veuillez saisir une adresse e-mail valide.' })
-      return
-    }
-
-    setIsSubmitting(true)
-
-    try {
-        const response = await fetch('https://formspree.io/f/xpwrzqpo', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        })
-
-        if (response.ok) {
-          setStatus({ type: 'success', message: 'Message envoyé avec succès ! Je vous répondrai bientôt.' })
-          setFormData({ name: '', email: '', subject: '', message: '' })
-        } else {
-          const data = await response.json().catch(() => ({}))
-          if (data.errors) {
-            setStatus({ type: 'error', message: data.errors.map((err) => err.message).join(', ') })
-          } else {
-            setStatus({ type: 'error', message: "Erreur lors de l'envoi. Veuillez réessayer ou m'envoyer un email directement." })
-          }
-        }
-      } catch (error) {
-        setStatus({ type: 'error', message: "Erreur lors de l'envoi. Veuillez réessayer ou m'envoyer un email directement." })
-      } finally {
-      setIsSubmitting(false)
-    }
   }
 
   useGSAP(() => {
@@ -159,7 +113,15 @@ export default function Contact({ reducedMotion }) {
 
         <p className="contact__subtitle">Discutons de votre projet</p>
 
-        <form ref={formRef} className="contact-form" onSubmit={handleSubmit} noValidate aria-label="Formulaire de contact">
+        <form
+          ref={formRef}
+          className="contact-form"
+          action={`https://formsubmit.co/${personalInfo.email}`}
+          method="POST"
+          aria-label="Formulaire de contact"
+        >
+          <input type="hidden" name="_replyto" value={formData.email} />
+          <input type="hidden" name="_subject" value={formData.subject} />
           <div className="contact-form__row">
             <div className="contact-form__group">
               <label htmlFor="name" className="contact-form__label">Nom complet</label>
@@ -218,13 +180,8 @@ export default function Contact({ reducedMotion }) {
               aria-required="true"
             />
           </div>
-          {status.message && (
-            <div className={`contact-form__status contact-form__status--${status.type}`} role="alert">
-              {status.message}
-            </div>
-          )}
-          <button type="submit" className="contact-form__submit" disabled={isSubmitting}>
-            {isSubmitting ? 'ENVOI EN COURS...' : 'ENVOYER LE MESSAGE'}
+          <button type="submit" className="contact-form__submit">
+            ENVOYER LE MESSAGE
             <span className="contact-form__submit-arrow">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
