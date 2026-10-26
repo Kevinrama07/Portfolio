@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfolio de Kevin Ramamonjisoa - Développeur Full-Stack et Développeur Créatif spécialisé en React, Node.js, Three.js et création d'expériences numériques immersives." />
+    <meta name="keywords" content="Kevin Ramamonjisoa, Développeur Full-Stack, Développeur Créatif, React, Node.js, Three.js, Portfolio, Madagascar" />
+    <meta name="author" content="Kevin Ramamonjisoa" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          document.documentElement.setAttribute('data-theme', theme)
+          var meta = document.querySelector('meta[name="theme-color"]')
+          if (meta) meta.setAttribute('content', theme === 'light' ? '#f8fafc' : '#0a0a0f')
+        } catch (e) {}
+      })()
+    </script>
+
+    <!-- Open Graph / Facebook -->
+    <link rel="canonical" href="https://kevinramamonjisoa.dev/" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kevinramamonjisoa.dev/" />
+    <meta property="og:title" content="Kevin Ramamonjisoa | Développeur Full-Stack & Créatif" />
+    <meta property="og:description" content="Portfolio de Kevin Ramamonjisoa - Développeur Full-Stack spécialisé dans React, Node.js, React Native et Three.js. À la recherche d'un stage ou d'une alternance." />
+    <meta property="og:image" content="https://kevinramamonjisoa.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://kevinramamonjisoa.dev/" />
+    <meta property="twitter:title" content="Kevin Ramamonjisoa | Développeur Full-Stack & Créatif" />
+    <meta property="twitter:description" content="Portfolio de Kevin Ramamonjisoa - Développeur Full-Stack spécialisé dans React, Node.js, React Native et Three.js. À la recherche d'un stage ou d'une alternance." />
+    <meta property="twitter:image" content="https://kevinramamonjisoa.dev/og-image.png" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Kevin Ramamonjisoa | Développeur Full-Stack & Créatif</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kevin Ramamonjisoa",
+        "jobTitle": "Développeur Full-Stack & Créatif",
+        "email": "ramamonjisoakevin5@gmail.com",
+        "url": "https://kevinramamonjisoa.dev/",
+        "sameAs": [
+          "https://github.com/Kevinrama07",
+          "https://www.linkedin.com/in/kevin-ramamonjisoa-511404379/"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Antananarivo",
+          "addressCountry": "MG"
+        },
+        "knowsAbout": ["React", "React Native", "Node.js", "Three.js", "JavaScript", "TypeScript", "Laravel", "Spring Boot"]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
